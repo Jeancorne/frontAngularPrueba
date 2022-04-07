@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <h3>Nuevos Estudiantes</h3>
+        <br />
+        <form (ngSubmit)="registrar()" [formGroup]="_formulario">
+            <div class="form-group">
+                <label for="txtNombre">Nombre</label>
+                <input formControlName="txtNombre" type="text" class="form-control" id="txtNombre"
+                    placeholder="Ingresa nombre">
+                <small *ngIf="_formulario.controls['txtNombre'].errors 
+                    && !_formulario.controls['txtNombre'].pristine" class="form-text text-danger">
+                    Nombre obligatorio
+                </small>
+            </div><br />
+            <div class="form-group">
+                <label for="txtEdad">Edad</label>
+                <input formControlName="txtEdad" type="number" class="form-control" id="txtEdad"
+                    placeholder="Ingresa edad">
+                <small *ngIf="_formulario.controls['txtEdad'].errors 
+                    && !_formulario.controls['txtEdad'].pristine" class="form-text text-danger">
+                    Edad obligatorio
+                </small>
+            </div><br />
+            <div class="form-group">
+                <label for="txtPatronus">Patronus</label>
+                <input formControlName="txtPatronus" type="text" class="form-control" id="txtPatronus"
+                    placeholder="Ingresa patronus">
+                <small *ngIf="_formulario.controls['txtPatronus'].errors 
+                    && !_formulario.controls['txtPatronus'].pristine" class="form-text text-danger">
+                    Patronus obligatorio
+                </small>
+            </div><br />
+            <button [disabled]="!_formulario.valid" type="submit" class="btn btn-primary">Registrar</button>
+        </form><br />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Patronus</th>
+                    <th scope="col">Edad</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="_table != null">
+                <tr *ngFor="let item of _table">
+                    <td>
+                        {{ item.nombre }}
+                    </td>
+                    <td>
+                        {{ item.patronus }}
+                    </td>
+                    <td>
+                        {{ item.edad }}
+                    </td>
+                    <td>
+                        <button  (click)="eliminarEstudiante(item.id)"  type="submit" class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
